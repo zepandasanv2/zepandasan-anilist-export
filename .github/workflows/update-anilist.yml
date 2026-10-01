@@ -1,0 +1,63 @@
+name: Update AniList data
+
+on:
+  schedule:
+    - cron: '0 5 * * 5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: anilist-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Export CSV files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data
+          # Remove old CSVs so validation cannot accept stale output.
+          find data -maxdepth 1 -type f -name '*.csv' -delete
+          npx --yes @l1e/anifetch ZePandaSan --all --csv -o ./data
+      - name: Validate complete CSV output
+        shell: python
+        run: |
+          import csv
+          from pathlib import Path
+          expected = ['anime_list', 'genre_breakdown', 'studio_breakdown']
+          for suffix in expected:
+              path = Path('data') / f'ZePandaSan_{suffix}.csv'
+              if not path.is_file():
+                  raise SystemExit(f'Missing export: {path}')
+          for path in Path('data').glob('*.csv'):
+              with path.open(encoding='utf-8-sig', newline='') as stream:
+                  rows = list(csv.reader(stream, strict=True))
+              if len(rows) < 2 or not rows[0] or any(len(row) != len(rows[0]) for row in rows[1:]):
+                  raise SystemExit(f'Empty or malformed export: {path}')
+              print(f'Validated {path}: {len(rows) - 1} rows')
+      - name: Commit changed data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- data/
+          if git diff --cached --quiet; then
+            echo 'AniList data is unchanged.'
+            exit 0
+          fi
+          git diff --cached --check
+          git commit -m 'chore: update AniList data'
+          git push origin HEAD:main
