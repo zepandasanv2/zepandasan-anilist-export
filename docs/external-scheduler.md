@@ -1,6 +1,6 @@
 # External scheduler: cron-job.org
 
-Status: enabled on 2026-10-02. cron-job.org job ID: 8563840. Test request returned HTTP 204 at 12:28:14 UTC; the resulting export succeeded: https://github.com/zepandasanv2/zepandasan-anilist-export/actions/runs/37006861547 . On 2026-10-02, the user changed the schedule to once per hour at minute 00. The first unattended hourly execution is not yet observed. The GitHub response reports token expiration on 2026-12-31 at 13:21:32 UTC; renew it before then. Do not put credentials in this repository or chat.
+Status: enabled on 2026-10-02. cron-job.org job ID: 8563840. Test request returned HTTP 204 at 12:28:14 UTC; the resulting export succeeded: https://github.com/zepandasanv2/zepandasan-anilist-export/actions/runs/37006861547 . On 2026-10-02, the user changed the schedule to once per hour at minute 00. Four hourly workflow_dispatch exports succeeded on 2026-10-02 at 13:01:13, 14:01:13, 15:01:16 and 16:01:17 UTC; latest run: https://github.com/zepandasanv2/zepandasan-anilist-export/actions/runs/37031047325 . The GitHub response reports token expiration on 2026-12-31 at 13:21:32 UTC; renew it before then. Do not put credentials in this repository or chat.
 
 ## Credential
 

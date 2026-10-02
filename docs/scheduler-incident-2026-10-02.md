@@ -27,4 +27,4 @@ The native Friday schedule has now been removed, and hourly tests have ended. cr
 
 ## Schedule change requested on 2026-10-02
 
-After the successful external test, the user requested hourly exports. cron-job.org job 8563840 is now named ZePandaSan hourly AniList export and enabled with `0 * * * *`. This supersedes the original Friday cadence. The first unattended hourly execution remains to be verified.
+After the successful external test, the user requested hourly exports. cron-job.org job 8563840 is now named ZePandaSan hourly AniList export and enabled with `0 * * * *`. This supersedes the original Friday cadence. Follow-up at 16:51 UTC: four hourly workflow_dispatch runs succeeded at 13:01:13, 14:01:13, 15:01:16 and 16:01:17 UTC. The bot also committed updated CSV data (efbc98e). Latest successful run: https://github.com/zepandasanv2/zepandasan-anilist-export/actions/runs/37031047325 .

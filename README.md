@@ -2,7 +2,7 @@
 
 Automated CSV exports of the public AniList anime list for **ZePandaSan**, generated with [AniFetch](https://github.com/Liyfez/Anifetch).
 
-cron-job.org triggers the GitHub Actions export  **every hour at minute 00** (`0 * * * *`). The external job is enabled, and its test dispatch and resulting export succeeded on 2026-10-02. The first unattended hourly execution is still pending.
+cron-job.org triggers the GitHub Actions export **every hour at minute 00** (`0 * * * *`). The external job is enabled, and its test dispatch and resulting export succeeded on 2026-10-02. Four hourly workflow_dispatch exports succeeded on 2026-10-02 at approximately 13:01, 14:01, 15:01 and 16:01 UTC.
 
 ## Data
 
