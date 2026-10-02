@@ -30,3 +30,10 @@ The workflow validates fresh CSV output before staging `data/`. Failed exports o
 The workflow requests `contents: write` for its GitHub token. If an organization policy denies this permission, its administrator must allow repository-content writes for GitHub Actions. Branch protection may also need to permit the workflow's push.
 
 GitHub can disable scheduled workflows in public repositories after 60 days without repository activity. If this happens, re-enable the workflow in Actions.
+
+## Temporary hourly test branch
+
+This branch uses `17 * * * *` (once per hour at minute 17). Checkout and automatic commits target the branch that runs the workflow. Manual execution can select this branch.
+
+GitHub only triggers scheduled workflows on the default branch. This hourly schedule will not run automatically while this remains a non-default test branch. To test the scheduler, the schedule must be applied to the default branch. Restore the Friday schedule after testing.
+

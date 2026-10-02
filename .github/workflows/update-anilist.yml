@@ -2,14 +2,14 @@ name: Update AniList data
 
 on:
   schedule:
-    - cron: '0 5 * * 5'
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: anilist-export
+  group: anilist-export-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -60,4 +60,4 @@ jobs:
           fi
           git diff --cached --check
           git commit -m 'chore: update AniList data'
-          git push origin HEAD:main
+          git push origin "HEAD:${GITHUB_REF_NAME}"
