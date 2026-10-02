@@ -1,6 +1,6 @@
 # External scheduler: cron-job.org
 
-Status: prepared, not yet activated. Account login and a dedicated GitHub credential are required. Do not put credentials in this repository or chat.
+Status: enabled on 2026-10-02. cron-job.org job ID: 8563840. Test request returned HTTP 204 at 12:28:14 UTC; the resulting export succeeded: https://github.com/zepandasanv2/zepandasan-anilist-export/actions/runs/37006861547 . Next scheduled execution: 2026-10-09 at 05:00 UTC. The first unattended weekly execution is not yet observed. The GitHub response reports token expiration on 2026-12-31 at 13:21:32 UTC; renew it before then. Do not put credentials in this repository or chat.
 
 ## Credential
 
@@ -27,6 +27,6 @@ Create the job disabled first. Use the service's test execution, confirm an acce
 
 Check both cron-job.org request history and GitHub Actions run results. A dispatch may succeed while the workflow later fails. Use failure notifications in cron-job.org and GitHub as desired. For 401/403, check token expiration, repository selection and Actions permission; for 404, check URL and access; for 422, check main and workflow_dispatch.
 
-After activation, remove the GitHub native schedule from update-anilist.yml to avoid duplicate launches. Manual execution remains available. If abandoning this workaround, disable the external job, revoke its dedicated token and restore `0 5 * * 5` in the GitHub workflow.
+The native GitHub schedule has been removed from update-anilist.yml to avoid duplicate launches. Manual execution remains available. If abandoning this workaround, disable the external job, revoke its dedicated token and restore `0 5 * * 5` in the GitHub workflow.
 
 Sources: [cron-job.org API](https://docs.cron-job.org/rest-api.html), [GitHub workflow dispatch API](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event).

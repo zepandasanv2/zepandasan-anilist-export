@@ -1,6 +1,6 @@
 # Incident: scheduled workflows did not produce runs
 
-Date: 2026-10-02. Status: unresolved; external scheduling workaround pending activation.
+Date: 2026-10-02. Status: root cause unresolved; external scheduling workaround enabled and test dispatch validated.
 
 ## Observations (UTC)
 
@@ -23,4 +23,4 @@ The workflows were active on main (the default branch); Actions was enabled; the
 
 Prepare cron-job.org to send workflow_dispatch every Friday at 05:00 UTC. See [external scheduler setup](external-scheduler.md). A successful HTTP request only verifies that GitHub accepted a dispatch; the resulting Actions run must also succeed. External runs appear as workflow_dispatch, not schedule.
 
-Keep the original Friday GitHub schedule as a fallback while the external scheduler is pending. Hourly export tests have ended; the minimal diagnostic remains available manually. When the external scheduler is validated, remove the native Friday schedule to avoid duplicate weekly dispatches. Do not call the workaround operational until a real cron-job.org request and the corresponding Actions run have been verified.
+The native Friday schedule has now been removed, and hourly tests have ended. cron-job.org job 8563840 is enabled for Friday 05:00 UTC. Its test request returned HTTP 204 on 2026-10-02 at 12:28:14 UTC and the corresponding export succeeded: https://github.com/zepandasanv2/zepandasan-anilist-export/actions/runs/37006861547 . The first unattended weekly execution remains to be observed.

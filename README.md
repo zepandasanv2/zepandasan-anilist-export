@@ -2,7 +2,7 @@
 
 Automated CSV exports of the public AniList anime list for **ZePandaSan**, generated with [AniFetch](https://github.com/Liyfez/Anifetch).
 
-The intended refresh is every **Friday at 05:00 UTC** (`0 5 * * 5`). Native scheduled runs did not appear during testing; automatic refresh is not yet validated. A cron-job.org workaround is prepared but awaits account setup and end-to-end validation. Manual exports work.
+cron-job.org triggers the GitHub Actions export every **Friday at 05:00 UTC** (`0 5 * * 5`): 07:00 in Paris during summer, 06:00 during winter. The external job is enabled, and its test dispatch and resulting export succeeded on 2026-10-02. The first unattended weekly execution is still pending.
 
 ## Data
 
@@ -35,4 +35,4 @@ GitHub can disable scheduled workflows in public repositories after 60 days with
 
 See [the incident record](docs/scheduler-incident-2026-10-02.md) for observations and limitations, and [cron-job.org setup](docs/external-scheduler.md) for the external dispatch configuration.
 
-Hourly tests have ended. The original Friday schedule remains as a fallback until the external scheduler is activated; the minimal diagnostic can be run manually.
+Hourly tests have ended. Native GitHub schedules were removed to avoid duplicate dispatches. Manual execution remains available for both workflows.
