@@ -1,0 +1,16 @@
+name: Diagnose hourly schedule
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  clock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Print UTC time
+        run: date -u
