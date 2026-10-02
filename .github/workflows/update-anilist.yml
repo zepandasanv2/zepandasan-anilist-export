@@ -2,7 +2,7 @@ name: Update AniList data
 
 on:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '0 5 * * 5'
   workflow_dispatch:
 
 permissions:

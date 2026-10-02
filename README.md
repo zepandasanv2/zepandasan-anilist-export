@@ -2,7 +2,7 @@
 
 Automated CSV exports of the public AniList anime list for **ZePandaSan**, generated with [AniFetch](https://github.com/Liyfez/Anifetch).
 
-During the temporary scheduler test, GitHub Actions refreshes the files **every hour at minute 17** (`17 * * * *`). Scheduled runs may be delayed by GitHub. The normal Friday schedule (`0 5 * * 5`, 05:00 UTC) will need to be restored after testing.
+The intended refresh is every **Friday at 05:00 UTC** (`0 5 * * 5`). Native scheduled runs did not appear during testing; automatic refresh is not yet validated. A cron-job.org workaround is prepared but awaits account setup and end-to-end validation. Manual exports work.
 
 ## Data
 
@@ -31,8 +31,8 @@ The workflow requests `contents: write` for its GitHub token. If an organization
 
 GitHub can disable scheduled workflows in public repositories after 60 days without repository activity. If this happens, re-enable the workflow in Actions.
 
-## Temporary hourly production test
+## Scheduling incident and workaround
 
-The hourly schedule was enabled on main on 2026-10-02 to diagnose missing scheduled runs. Check Actions for runs with the schedule event; manual runs do not validate the scheduler. Checkout and automatic commits target the branch running the workflow.
+See [the incident record](docs/scheduler-incident-2026-10-02.md) for observations and limitations, and [cron-job.org setup](docs/external-scheduler.md) for the external dispatch configuration.
 
-After testing, restore the cron to `0 5 * * 5` and update this README. The hourly test remains active until that change is published.
+Hourly tests have ended. The original Friday schedule remains as a fallback until the external scheduler is activated; the minimal diagnostic can be run manually.
