@@ -36,4 +36,3 @@ GitHub can disable scheduled workflows in public repositories after 60 days with
 This branch uses `17 * * * *` (once per hour at minute 17). Checkout and automatic commits target the branch that runs the workflow. Manual execution can select this branch.
 
 GitHub only triggers scheduled workflows on the default branch. This hourly schedule will not run automatically while this remains a non-default test branch. To test the scheduler, the schedule must be applied to the default branch. Restore the Friday schedule after testing.
-
