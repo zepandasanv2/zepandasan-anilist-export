@@ -24,3 +24,7 @@ The workflows were active on main (the default branch); Actions was enabled; the
 Prepare cron-job.org to send workflow_dispatch every Friday at 05:00 UTC. See [external scheduler setup](external-scheduler.md). A successful HTTP request only verifies that GitHub accepted a dispatch; the resulting Actions run must also succeed. External runs appear as workflow_dispatch, not schedule.
 
 The native Friday schedule has now been removed, and hourly tests have ended. cron-job.org job 8563840 is enabled for Friday 05:00 UTC. Its test request returned HTTP 204 on 2026-10-02 at 12:28:14 UTC and the corresponding export succeeded: https://github.com/zepandasanv2/zepandasan-anilist-export/actions/runs/37006861547 . The first unattended weekly execution remains to be observed.
+
+## Schedule change requested on 2026-10-02
+
+After the successful external test, the user requested hourly exports. cron-job.org job 8563840 is now named ZePandaSan hourly AniList export and enabled with `0 * * * *`. This supersedes the original Friday cadence. The first unattended hourly execution remains to be verified.

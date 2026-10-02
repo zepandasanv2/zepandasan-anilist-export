@@ -1,6 +1,6 @@
 # External scheduler: cron-job.org
 
-Status: enabled on 2026-10-02. cron-job.org job ID: 8563840. Test request returned HTTP 204 at 12:28:14 UTC; the resulting export succeeded: https://github.com/zepandasanv2/zepandasan-anilist-export/actions/runs/37006861547 . Next scheduled execution: 2026-10-09 at 05:00 UTC. The first unattended weekly execution is not yet observed. The GitHub response reports token expiration on 2026-12-31 at 13:21:32 UTC; renew it before then. Do not put credentials in this repository or chat.
+Status: enabled on 2026-10-02. cron-job.org job ID: 8563840. Test request returned HTTP 204 at 12:28:14 UTC; the resulting export succeeded: https://github.com/zepandasanv2/zepandasan-anilist-export/actions/runs/37006861547 . On 2026-10-02, the user changed the schedule to once per hour at minute 00. The first unattended hourly execution is not yet observed. The GitHub response reports token expiration on 2026-12-31 at 13:21:32 UTC; renew it before then. Do not put credentials in this repository or chat.
 
 ## Credential
 
@@ -8,11 +8,11 @@ In GitHub Settings > Developer settings > Personal access tokens > Fine-grained 
 
 ## Job configuration
 
-- Title: ZePandaSan weekly AniList export
+- Title: ZePandaSan hourly AniList export
 - URL: `https://api.github.com/repos/zepandasanv2/zepandasan-anilist-export/actions/workflows/update-anilist.yml/dispatches`
 - Method: POST
 - Timezone: UTC (not Europe/Paris)
-- Schedule: `0 5 * * 5` (Friday 05:00 UTC; 07:00 Paris in summer, 06:00 in winter)
+- Schedule: `0 * * * *` (every hour at minute 00)
 - Request body: `{"ref":"main"}`
 - Headers:
   - `Authorization: Bearer <dedicated fine-grained token>`
@@ -21,7 +21,7 @@ In GitHub Settings > Developer settings > Personal access tokens > Fine-grained 
   - `X-GitHub-Api-Version: 2022-11-28`
   - `User-Agent: zepandasan-anilist-export-scheduler`
 
-Create the job disabled first. Use the service's test execution, confirm an accepted response (normally HTTP 204 with this API version), then check GitHub Actions for a new successful workflow_dispatch run. A 2xx response alone does not prove the CSV export succeeded. Enable the weekly job after this validation, record its job ID here (never its credential), and confirm the next execution time in the service.
+Create the job disabled first. Use the service's test execution, confirm an accepted response (normally HTTP 204 with this API version), then check GitHub Actions for a new successful workflow_dispatch run. A 2xx response alone does not prove the CSV export succeeded. Enable the hourly job after this validation, record its job ID here (never its credential), and confirm the next execution time in the service.
 
 ## Monitoring and recovery
 
