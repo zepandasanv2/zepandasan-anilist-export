@@ -2,7 +2,7 @@
 
 Automated CSV exports of the public AniList anime list for **ZePandaSan**, generated with [AniFetch](https://github.com/Liyfez/Anifetch).
 
-GitHub Actions refreshes the files every **Friday at 05:00 UTC** (`0 5 * * 5`), or 06:00 in winter / 07:00 in summer in Paris. Scheduled runs may be delayed by GitHub.
+cron-job.org triggers the GitHub Actions export **every hour at minute 00** (`0 * * * *`). The external job is enabled, and its test dispatch and resulting export succeeded on 2026-10-02. Four hourly workflow_dispatch exports succeeded on 2026-10-02 at approximately 13:01, 14:01, 15:01 and 16:01 UTC.
 
 ## Data
 
@@ -30,3 +30,9 @@ The workflow validates fresh CSV output before staging `data/`. Failed exports o
 The workflow requests `contents: write` for its GitHub token. If an organization policy denies this permission, its administrator must allow repository-content writes for GitHub Actions. Branch protection may also need to permit the workflow's push.
 
 GitHub can disable scheduled workflows in public repositories after 60 days without repository activity. If this happens, re-enable the workflow in Actions.
+
+## Scheduling incident and workaround
+
+See [the incident record](docs/scheduler-incident-2026-10-02.md) for observations and limitations, and [cron-job.org setup](docs/external-scheduler.md) for the external dispatch configuration.
+
+Hourly tests have ended. Native GitHub schedules were removed to avoid duplicate dispatches. Manual execution remains available for both workflows.
